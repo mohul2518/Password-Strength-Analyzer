@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Password Strength Analyzer</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <header>
+
+            <h1>Password Strength Analyzer</h1>
+
+            <p>
+                Analyze your password security and get suggestions
+                for creating stronger passwords.
+            </p>
+
+        </header>
+
+
+        <!-- PASSWORD ANALYZER -->
+
+        <section class="card">
+
+            <h2>Analyze Password</h2>
+
+            <div class="password-row">
+
+                <input
+                    type="password"
+                    id="passwordInput"
+                    placeholder="Enter a password"
+                    autocomplete="off"
+                >
+
+                <button id="togglePassword">
+                    Show
+                </button>
+
+            </div>
+
+
+            <button
+                id="analyzeButton"
+                class="primary-button"
+            >
+                Analyze Password
+            </button>
+
+
+            <!-- CONNECTION ERROR -->
+
+            <div
+                id="connectionError"
+                class="error-message"
+                style="display: none;"
+            >
+                Could not connect to Flask server.
+            </div>
+
+
+            <!-- RESULTS -->
+
+            <div
+                id="resultSection"
+                style="display: none;"
+            >
+
+                <h2>Security Result</h2>
+
+
+                <!-- SCORE -->
+
+                <div class="score-box">
+
+                    <div>
+
+                        <p>Security Score</p>
+
+                        <div
+                            id="score"
+                            class="score"
+                        >
+                            0
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <p>Classification</p>
+
+                        <div
+                            id="classification"
+                            class="classification"
+                        >
+                            -
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STRENGTH BAR -->
+
+                <div class="strength-container">
+
+                    <div
+                        id="strengthFill"
+                        class="strength-fill"
+                    ></div>
+
+                </div>
+
+
+                <!-- FINDINGS -->
+
+                <div class="result-card">
+
+                    <h3>Security Findings</h3>
+
+                    <ul id="findings"></ul>
+
+                </div>
+
+
+                <!-- SUGGESTIONS -->
+
+                <div class="result-card">
+
+                    <h3>Suggestions</h3>
+
+                    <ul id="suggestions"></ul>
+
+                </div>
+
+
+                <!-- METRICS -->
+
+                <div class="result-card">
+
+                    <h3>Password Metrics</h3>
+
+                    <div class="metrics-grid">
+
+                        <div class="metric">
+
+                            <span>Length</span>
+
+                            <strong id="metricLength">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>Character Types</span>
+
+                            <strong id="metricTypes">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>Unique Characters</span>
+
+                            <strong id="metricUnique">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>Unique Ratio</span>
+
+                            <strong id="metricRatio">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>Entropy Estimate</span>
+
+                            <strong id="metricEntropy">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD POLICY -->
+
+                <div class="result-card">
+
+                    <h3>Password Policy</h3>
+
+                    <ul id="policyResults"></ul>
+
+                </div>
+
+
+                <!-- ANALYSIS SUMMARY -->
+
+                <div class="result-card">
+
+                    <h3>Analysis Summary</h3>
+
+                    <p>
+                        Length:
+                        <strong id="summaryLength">-</strong>
+                    </p>
+
+                    <p>
+                        Character Types:
+                        <strong id="summaryTypes">-</strong>
+                    </p>
+
+                    <p>
+                        Entropy:
+                        <strong id="summaryEntropy">-</strong>
+                    </p>
+
+                    <p>
+                        Score:
+                        <strong id="summaryScore">-</strong>
+                    </p>
+
+                </div>
+
+
+                <!-- CHART -->
+
+                <div class="result-card">
+
+                    <h3>Security Score Chart</h3>
+
+                    <canvas id="scoreChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PASSWORD GENERATOR -->
+
+        <section class="card">
+
+            <h2>Secure Password Generator</h2>
+
+            <p>
+                Generate a random password using secure randomness.
+            </p>
+
+
+            <button
+                id="generateButton"
+                class="primary-button"
+            >
+                Generate Password
+            </button>
+
+
+            <div class="generated-row">
+
+                <input
+                    type="text"
+                    id="generatedPassword"
+                    readonly
+                >
+
+                <button id="copyButton">
+                    Copy
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <p>
+                Passwords are analyzed temporarily and are not stored.
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <!-- Chart.js -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- Our JavaScript -->
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>
